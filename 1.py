@@ -44,20 +44,5 @@ def promo():
                 </html>"""
 
 
-@app.route('/image_mars')
-def mars():
-    return f"""<!doctype html>
-                    <html lang="en">
-                      <head>
-                        <meta charset="utf-8">
-                        <title>Привет, Марс!</title>
-                      </head>
-                      <body>
-                        
-
-                      </body>
-                    </html>"""
-
-
 if __name__ == '__main__':
     app.run(port=8080, host='127.0.0.1')
