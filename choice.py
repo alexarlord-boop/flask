@@ -3,10 +3,9 @@ from flask import Flask, url_for, request
 app = Flask(__name__)
 
 
-@app.route('/choice/<planet_name>')
-def choice(planet_name):
-    if planet_name == 'Марс':
-        return f"""<!doctype html>
+@app.route('/results/<nickname>/<int:level>/<float:rating>')
+def choice(nickname, level, rating):
+    return f"""<!doctype html>
                 <html lang="en">
                   <head>
                     <meta charset="utf-8">
@@ -19,14 +18,14 @@ def choice(planet_name):
                     <link rel="stylesheet" href={url_for('static', filename='css/style.css')}
                   </head>
                   <body>
-                  <div class="Top"><h1>Мое предлжение: Марс!</h1></div>
+                  <div class="Top"><h1>Результат отбора</h1></div>
+                  <div class="Top h2">Претендента на участие в миссии {nickname}</div>
                             
-
-            <div class="alert alert-info h1" role="alert">Человечество вырастает из детства.</div>
-            <div class="alert alert-success h1" role="alert">Человечеству мала одна планета.</div>
-            <div class="alert alert-info h1" role="alert">Мы сделаем обитаемыми безжизненные пока планеты.</div>
-            <div class="alert alert-warning h1" role="alert">И начнем с Марса!</div>
-            <div class="alert alert-danger h1" role="alert">Присоединяйся!</div>
+            
+            <div class="alert alert-success h1" role="alert">Ваш рейтинг после {level} этапа отбора</div>
+            <div class="h3">составляет {rating}</div>
+            <div class="alert alert-warning h1" role="alert">Удачи!</div>
+            
                    
                   </body>
                 </html>"""
@@ -34,3 +33,5 @@ def choice(planet_name):
 
 if __name__ == '__main__':
     app.run(port=8080, host='127.0.0.1')
+
+# http://127.0.0.1:8080/results/Mark/44/66
