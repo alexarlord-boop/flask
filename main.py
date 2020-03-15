@@ -1,57 +1,64 @@
 from flask import Flask, render_template, redirect
 from form import RegisterForm
-from data import db_session, news, users
+from data import db_session, users, jobs
 from data.users import User
-from data.news import News
+from data.jobs import Jobs
+import json
+
+# from data.news import News
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'yandexlyceum_secret_key'
 
-user1 = {
-    "name": "Пользователь 1",
-    "about": "биография пользователя 1",
-    "email": "email1@email.ru",
-    "pass": None
-}
-user2 = {
-    "name": "Пользователь 2",
-    "about": "биография пользователя 2",
-    "email": "email2@email.ru",
-    "pass": None
-}
-user3 = {
-    "name": "Пользователь 3",
-    "about": "биография пользователя 3",
-    "email": "email3@email.ru",
-    "pass": None
-}
+with open("data/col.json") as f:
+    colonials = json.load(f)["crew"]
+with open("data/jobs.json") as f:
+    jb = json.load(f)["jobs"]
 
 
 def create_user(params, session):
-    user = User()
-    user.name = params["name"]
-    user.about = params["about"]
-    user.email = params["email"]
-    user.hashed_password = params["pass"]
-    session.add(user)
+    us = User()
+
+    us.surname = params['surname']
+    us.name = params['name']
+    us.age = params['age']
+    us.position = params['position']
+    us.speciality = params['speciality']
+    us.address = params['address']
+    us.email = params['email']
+
+    session.add(us)
+    session.commit()
+
+
+def create_job(session):
+    job = Jobs()
+
+    job.team_leader = 1
+    job.job = "deployment of residential modules 1 and 2"
+    job.work_size = 15
+    job.collaborators = "2, 3"
+    # job.start_date = params["start_date"]
+    job.is_finished = False
+
+    session.add(job)
     session.commit()
 
 
 def main():
-    db_session.global_init("db/blogs.sqlite")
+    db_session.global_init("db/mars_explorer.db")
     session = db_session.create_session()
-    # create_user(params=user1, session=session)
-    # create_user(params=user2, session=session)
-    # create_user(params=user3, session=session)
 
-    # session.query(User).filter(User.id > 1).delete()
-    # session.commit()
+    for i, person_params in colonials.items():
+        create_user(person_params, session)
 
+    create_job(session=session)
     # news = News(title="Первая новость", content="Привет блог!",
     #             user_id=1, is_private=False)
     # session.add(news)
-    session.commit()
-    app.run()
+
+    # session.commit()
+    # app.run()
 
 
 @app.route("/")

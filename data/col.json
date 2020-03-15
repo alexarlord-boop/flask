@@ -1,0 +1,40 @@
+{
+  "crew": {
+    "1": {
+      "surname": "Scott",
+      "name": "Ridley",
+      "age": "21",
+      "position": "captain",
+      "speciality": "research engineer",
+      "address": "module_1",
+      "email": "scott_chief@mars.org"
+    },
+    "2": {
+      "surname": "Android_1",
+      "name": "dr_1",
+      "age": "1",
+      "position": "research unit",
+      "speciality": "research droid",
+      "address": "surface_1",
+      "email": "dr_rsunit@mars.org"
+    },
+    "3": {
+      "surname": "Android_2",
+      "name": "dr_2",
+      "age": "5",
+      "position": "analysis unit",
+      "speciality": "research droid",
+      "address": "surface_99",
+      "email": "dr_asunit@mars.org"
+    },
+    "4": {
+      "surname": "Android_3",
+      "name": "dr_3",
+      "age": "1",
+      "position": "analysis unit",
+      "speciality": "research droid",
+      "address": "surface_unfound",
+      "email": "dr_asunit2@mars.org"
+    }
+  }
+}
