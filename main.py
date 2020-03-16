@@ -31,16 +31,15 @@ def create_user(params, session):
     session.commit()
 
 
-def create_job(session):
+def create_job(params, session):
     job = Jobs()
 
-    job.team_leader = 1
-    job.job = "deployment of residential modules 1 and 2"
-    job.work_size = 15
-    job.collaborators = "2, 3"
-    # job.start_date = params["start_date"]
-    job.is_finished = False
-
+    job.team_leader = params["team_leader"]
+    job.job = params["job deployment"]
+    job.work_size = params["work_size"]
+    job.collaborators = params["collaborators"]
+    job.start_date = params["start_date"]
+    job.is_finished = params["is_finished"]
     session.add(job)
     session.commit()
 
@@ -50,22 +49,20 @@ def main():
     session = db_session.create_session()
 
     for i, person_params in colonials.items():
-        create_user(person_params, session)
+         create_user(person_params, session)
 
-    create_job(session=session)
-    # news = News(title="Первая новость", content="Привет блог!",
-    #             user_id=1, is_private=False)
-    # session.add(news)
+    for i, job_params in jb.items():
+        print(job_params)
+        create_job(job_params, session)
 
-    # session.commit()
-    # app.run()
+    app.run()
 
 
 @app.route("/")
 def index():
     session = db_session.create_session()
-    news = session.query(News).filter(News.is_private is not True)
-    return render_template("index.html", news=news)
+    job = session.query(Jobs).all()
+    return render_template("index.html", job=job)
 
 
 @app.route('/register', methods=['GET', 'POST'])

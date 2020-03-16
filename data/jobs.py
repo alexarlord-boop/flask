@@ -1,7 +1,7 @@
 from sqlalchemy import Column, Integer, String, DateTime, Boolean, ForeignKey
 import datetime
 
-# from sqlalchemy import orm
+from sqlalchemy import orm
 from .db_session import SqlAlchemyBase
 
 
@@ -17,4 +17,5 @@ class Jobs(SqlAlchemyBase):
     end_date = Column(DateTime)
     is_finished = Column(Boolean)
 
-    # users = orm.relation("News", back_populates='user')
+    collabs = orm.relation("User", back_populates='jobs')
+
