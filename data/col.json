@@ -35,6 +35,15 @@
       "speciality": "research droid",
       "address": "surface_unfound",
       "email": "dr_asunit2@mars.org"
+    },
+    "5": {
+      "surname": "JD",
+      "name": "John Dorian",
+      "age": "25",
+      "position": "main doctor",
+      "speciality": "ord dr",
+      "address": "module_1",
+      "email": "DR_Acula@mars.org"
     }
   }
 }
