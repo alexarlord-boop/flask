@@ -2,18 +2,20 @@
 
 {% block content %}
 <h3 class="text-center">Works log</h3>
-{% for item in job%}
+<div class="container">
+    {% for item in job%}
     <h3>Action #{{loop.index}}</h3>
     <table class="table table-striped table-bordered">
         <thead class="thead-dark">
             <tr>
                 <th>Title of activity</th>
-                <th>Team leader</th>
+                <th >Team leader</th>
                 <th>Duration</th>
                 <th>List of collaborators</th>
                 <th>Is finished</th>
             </tr>
         </thead>
+
         <tbody class="tbody-light">
             <tr>
                 <td>{{item.job}}</td>
@@ -25,4 +27,5 @@
         </tbody>
     </table>
 {% endfor %}
+</div>
 {% endblock %}

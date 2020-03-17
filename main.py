@@ -3,12 +3,13 @@ from form import RegisterForm
 from data import db_session, users, jobs
 from data.users import User
 from data.jobs import Jobs
-import json
+import json, os
 
-# from data.news import News
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'yandexlyceum_secret_key'
+
+os.remove("db/mars_explorer.db")
 
 with open("data/col.json") as f:
     colonials = json.load(f)["crew"]
@@ -49,7 +50,7 @@ def main():
     session = db_session.create_session()
 
     for i, person_params in colonials.items():
-         create_user(person_params, session)
+        create_user(person_params, session)
 
     for i, job_params in jb.items():
         print(job_params)
@@ -81,7 +82,12 @@ def reqister():
         user = User(
             name=form.name.data,
             email=form.email.data,
-            about=form.about.data
+            surname=form.surname.data,
+            age=form.age.data,
+            position=form.position.data,
+            speciality=form.speciality.data,
+            address=form.address.data,
+
         )
         user.set_password(form.password.data)
         session.add(user)

@@ -15,6 +15,14 @@
       "collaborators": "1, 2, 3",
       "start_date": null,
       "is_finished": false
+    },
+    "3": {
+      "team_leader": 5,
+      "job deployment": "Healing soldiers",
+      "work_size": 20,
+      "collaborators": "1, 2, 3",
+      "start_date": null,
+      "is_finished": false
     }
   }
 }
